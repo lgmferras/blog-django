@@ -10,7 +10,11 @@ done
 
 echo "✅ Postgres Database Started Successfully ($POSTGRES_HOST:$POSTGRES_PORT)"
 
+echo 'Executando Collect Static'
 python manage.py collectstatic --noinput
+echo 'Executando Migrations'
 python manage.py makemigrations --noinput
+echo 'Executando Migrations'
 python manage.py migrate --noinput
+echo 'Executando Runserver'
 python manage.py runserver 0.0.0.0:8000
