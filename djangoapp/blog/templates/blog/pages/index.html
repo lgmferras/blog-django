@@ -1,17 +1,26 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-  <main class="main-content section-wrapper">
-    <div class="section-content-wide">
-      <div class="section-gap">
+<main class="main-content section-wrapper">
+  <div class="section-content-wide">
+    <div class="section-gap">
 
-        <div class="card-grid">
-          {% for i in ""|ljust:"9" %}
-            {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %}
-          {% endfor %}
-        </div>
-
+      {% if page_obj %}
+      <div class="card-grid">
+        {% for post in page_obj %}
+           {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %}
+        {% endfor %}
       </div>
+      {% else %}
+      <div class="div not-foud center">
+        <h1>No posts found.</h1>
+        <a href="{% url 'blog:index' %}">Go back to home</a>
+      </div>
+      {% endif %}
+
+
+
     </div>
-  </main>
+  </div>
+</main>
 {% endblock content %}
